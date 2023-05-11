@@ -45,8 +45,6 @@ func getRoot(cli *client.Client) func(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("got / request\n")
 		t, err := template.New("index.html").ParseFiles("index.html")
 
-		// getContainers()[0].NetworkSettings.Networks.
-		// getNetworks(cli)[0].Containers[0].
 		if err != nil {
 			log.Panicln(err)
 		}
@@ -68,7 +66,7 @@ func main() {
 	defer cli.Close()
 	log.Println("starting")
 	http.HandleFunc("/", getRoot(cli))
-	e := http.ListenAndServe(":3333", nil)
+	e := http.ListenAndServe("0.0.0.0:3333", nil)
 	if e != nil {
 		log.Fatalln(e)
 	}
