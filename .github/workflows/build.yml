@@ -27,10 +27,12 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ github.repository }}
 
       - name: Build and Push Image
-        uses: docker/build-push-action@v3
+        uses: int128/kaniko-action@v1
         with:
           context: .
+          file: Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          file: Dockerfile
+          cache: true
+          cache-repository: ghcr.io/${{ github.repository }}/cache
