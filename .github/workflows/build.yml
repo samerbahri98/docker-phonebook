@@ -30,7 +30,7 @@ jobs:
         uses: int128/kaniko-action@v1
         with:
           context: .
-          file: Dockerfile
+          file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
