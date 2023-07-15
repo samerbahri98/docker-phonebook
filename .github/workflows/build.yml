@@ -29,8 +29,6 @@ jobs:
       - name: Build and Push Image
         uses: int128/kaniko-action@v1
         with:
-          context: .
-          file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
